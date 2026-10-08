@@ -24,6 +24,8 @@ export function validateRegistration(input: RegistrationInput): RegistrationErro
 
   if (!phone) {
     errors.phone = "Please enter your phone number.";
+  } else if (!/^[\d\s+()-]+$/.test(phone)) {
+    errors.phone = "Use only digits, spaces, +, hyphens, or parentheses.";
   } else {
     const normalizedPhone = phone.replace(/\D/g, "");
     if (normalizedPhone.length < 10 || normalizedPhone.length > 13) {

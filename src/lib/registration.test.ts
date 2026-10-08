@@ -44,4 +44,16 @@ describe("validateRegistration", () => {
       phone: "Enter a phone number with 10 to 13 digits.",
     });
   });
+
+  it("rejects phone numbers containing letters", () => {
+    expect(
+      validateRegistration({
+        name: "Aarav Sharma",
+        email: "aarav@example.com",
+        phone: "abc9876543210",
+      }),
+    ).toEqual({
+      phone: "Use only digits, spaces, +, hyphens, or parentheses.",
+    });
+  });
 });

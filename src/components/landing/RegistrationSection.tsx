@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, CheckCircle2, LockKeyhole, ShieldCheck } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import {
   validateRegistration,
   type RegistrationErrors,
@@ -14,6 +14,10 @@ export function RegistrationSection() {
   const [input, setInput] = useState<RegistrationInput>(initialInput);
   const [errors, setErrors] = useState<RegistrationErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const errorCount = Object.values(errors).filter(Boolean).length;
 
   const updateField = (field: keyof RegistrationInput, value: string) => {
     setInput((current) => ({ ...current, [field]: value }));
@@ -25,11 +29,17 @@ export function RegistrationSection() {
     event.preventDefault();
     const validationErrors = validateRegistration(input);
     setErrors(validationErrors);
+    setSubmitted(false);
 
     if (Object.keys(validationErrors).length === 0) {
       setSubmitted(true);
       setInput(initialInput);
+      return;
     }
+
+    if (validationErrors.name) nameRef.current?.focus();
+    else if (validationErrors.email) emailRef.current?.focus();
+    else if (validationErrors.phone) phoneRef.current?.focus();
   };
 
   return (
@@ -55,10 +65,17 @@ export function RegistrationSection() {
             <strong>₹199</strong>
           </div>
 
+          {errorCount > 0 && (
+            <p className="form-error-summary" role="alert">
+              Please correct {errorCount} {errorCount === 1 ? "field" : "fields"} below.
+            </p>
+          )}
+
           <div className="field-group">
             <label htmlFor="registration-name">Full name</label>
             <input
               id="registration-name"
+              ref={nameRef}
               name="name"
               value={input.name}
               onChange={(event) => updateField("name", event.target.value)}
@@ -74,6 +91,7 @@ export function RegistrationSection() {
             <label htmlFor="registration-email">Email address</label>
             <input
               id="registration-email"
+              ref={emailRef}
               name="email"
               type="email"
               value={input.email}
@@ -90,6 +108,7 @@ export function RegistrationSection() {
             <label htmlFor="registration-phone">Phone number</label>
             <input
               id="registration-phone"
+              ref={phoneRef}
               name="phone"
               type="tel"
               value={input.phone}
