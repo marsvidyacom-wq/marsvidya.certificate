@@ -13,6 +13,7 @@ describe("Navbar", () => {
 
     await user.click(trigger);
     expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("link", { name: "Benefits" })).toHaveFocus();
     expect(screen.getByRole("link", { name: "Program" })).toBeInTheDocument();
 
     await user.keyboard("{Escape}");

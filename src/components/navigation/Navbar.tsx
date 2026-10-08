@@ -13,9 +13,12 @@ const navigationItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const navigationRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
+
+    navigationRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -48,6 +51,7 @@ export function Navbar() {
         </button>
 
         <nav
+          ref={navigationRef}
           id="primary-navigation"
           className="primary-navigation"
           data-open={isOpen ? "true" : "false"}
