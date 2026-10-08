@@ -34,4 +34,11 @@ describe("landing page shell", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/is the registration fee ₹199/i)).toBeInTheDocument();
   });
+
+  it("keeps a mobile conversion shortcut connected to registration", () => {
+    render(<Page />);
+
+    const conversionLinks = screen.getAllByRole("link", { name: /join for ₹199/i });
+    expect(conversionLinks.some((link) => link.getAttribute("href") === "#register")).toBe(true);
+  });
 });

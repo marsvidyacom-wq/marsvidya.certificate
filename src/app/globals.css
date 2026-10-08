@@ -73,6 +73,69 @@ p {
   padding-block: clamp(4.75rem, 9vw, 8rem);
 }
 
+.site-header {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  padding: 0.7rem 0.8rem 0.7rem 1rem;
+  border: 1px solid rgba(110, 163, 255, 0.2);
+  border-radius: 1.2rem;
+  background: rgba(3, 8, 28, 0.68);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.primary-navigation {
+  display: flex;
+  gap: 1.65rem;
+  align-items: center;
+  color: #cbd7f0;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.primary-navigation > a:not(.nav-cta):hover {
+  color: white;
+}
+
+.nav-cta,
+.primary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0.85rem;
+  color: #06102a;
+  background: linear-gradient(135deg, #ffe44f, #ffb820);
+  box-shadow: 0 10px 30px rgba(255, 199, 39, 0.2);
+  font-weight: 900;
+}
+
+.nav-cta {
+  padding: 0.8rem 1.05rem;
+}
+
+.menu-trigger {
+  display: none;
+  width: 2.7rem;
+  height: 2.7rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  color: white;
+  background: rgba(26, 53, 113, 0.55);
+}
+
 .eyebrow,
 .card-eyebrow {
   display: inline-flex;
@@ -347,6 +410,169 @@ p {
   gap: clamp(2rem, 8vw, 7rem);
 }
 
+.registration-section {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid rgba(82, 144, 255, 0.24);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(30, 127, 255, 0.3), transparent 25rem),
+    radial-gradient(circle at 85% 80%, rgba(139, 92, 255, 0.22), transparent 28rem),
+    #06102d;
+}
+
+.registration-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 0.78fr);
+  gap: clamp(2.5rem, 8vw, 7rem);
+  align-items: center;
+}
+
+.registration-copy h2 {
+  max-width: 700px;
+  margin: 0.9rem 0 1.2rem;
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.registration-copy h2 em {
+  color: var(--yellow);
+  font-style: normal;
+}
+
+.registration-copy > p {
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.registration-assurances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+
+.registration-assurances span {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #cfdbf4;
+  background: rgba(8, 18, 51, 0.62);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.registration-assurances svg {
+  width: 1rem;
+  color: var(--cyan);
+}
+
+.registration-form {
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border-radius: 1.6rem;
+}
+
+.form-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.form-heading span {
+  color: #aebcda;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-heading strong {
+  color: var(--yellow);
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.field-group {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.field-group label {
+  color: #dce6fb;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.field-group input {
+  width: 100%;
+  min-height: 3.15rem;
+  padding-inline: 0.95rem;
+  border: 1px solid rgba(97, 151, 255, 0.24);
+  border-radius: 0.85rem;
+  color: white;
+  background: rgba(2, 8, 26, 0.72);
+  outline: none;
+}
+
+.field-group input::placeholder {
+  color: #6f7e9e;
+}
+
+.field-group input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(40, 215, 255, 0.1);
+}
+
+.field-group input[aria-invalid="true"] {
+  border-color: #ff7991;
+}
+
+.field-error {
+  color: #ff9aac;
+  font-size: 0.76rem;
+}
+
+.form-submit {
+  gap: 0.65rem;
+  width: 100%;
+  min-height: 3.35rem;
+  margin-top: 0.45rem;
+  cursor: pointer;
+}
+
+.form-success {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  margin: 1rem 0 0;
+  padding: 0.8rem;
+  border: 1px solid rgba(61, 225, 159, 0.28);
+  border-radius: 0.8rem;
+  color: #a7f6d4;
+  background: rgba(61, 225, 159, 0.08);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.registration-form > small {
+  display: block;
+  margin-top: 0.9rem;
+  color: #7787a8;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sticky-mobile-cta {
+  display: none;
+}
+
 .faq-list {
   border-top: 1px solid var(--line);
 }
@@ -454,7 +680,8 @@ p {
   }
 
   .program-layout,
-  .faq-layout {
+  .faq-layout,
+  .registration-layout {
     grid-template-columns: 1fr;
   }
 
@@ -464,6 +691,44 @@ p {
 }
 
 @media (max-width: 620px) {
+  body {
+    padding-bottom: 5.4rem;
+  }
+
+  .site-header {
+    padding-top: 0.6rem;
+  }
+
+  .navbar {
+    position: relative;
+    min-height: 3.9rem;
+  }
+
+  .menu-trigger {
+    display: grid;
+  }
+
+  .primary-navigation {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: 0;
+    left: 0;
+    display: none;
+    padding: 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: rgba(3, 8, 28, 0.98);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+  }
+
+  .primary-navigation[data-open="true"] {
+    display: grid;
+  }
+
+  .primary-navigation a {
+    padding: 0.8rem;
+  }
+
   .section-shell {
     width: min(100% - 1.25rem, 1160px);
   }
@@ -485,6 +750,53 @@ p {
 
   .footer-inner nav {
     flex-wrap: wrap;
+  }
+
+  .sticky-mobile-cta {
+    position: fixed;
+    z-index: 50;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    left: 0.65rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0.7rem 0.65rem 1rem;
+    border: 1px solid rgba(103, 160, 255, 0.35);
+    border-radius: 1rem;
+    background: rgba(4, 10, 32, 0.94);
+    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.46);
+    backdrop-filter: blur(20px);
+  }
+
+  .sticky-mobile-cta > span {
+    display: grid;
+  }
+
+  .sticky-mobile-cta small {
+    color: #8fa0c2;
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .sticky-mobile-cta strong {
+    color: var(--yellow);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+
+  .sticky-mobile-cta a {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+    padding: 0.8rem 0.95rem;
+    border-radius: 0.8rem;
+    color: #06102a;
+    background: linear-gradient(135deg, #ffe44f, #ffb820);
+    font-size: 0.8rem;
+    font-weight: 900;
   }
 }
 
