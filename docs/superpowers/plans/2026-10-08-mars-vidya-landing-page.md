@@ -45,6 +45,8 @@
 - `src/components/landing/ProgramSection.tsx`: five learning topics and program flow.
 - `src/components/landing/SocialProof.tsx`: explicitly demo-labelled trust and testimonial presentation.
 - `src/components/landing/RegistrationSection.tsx`: validated demo registration form.
+- `src/components/landing/FaqSection.tsx`: conversion-focused objection handling.
+- `src/components/landing/StickyMobileCta.tsx`: persistent small-screen registration shortcut.
 - `src/components/landing/Footer.tsx`: brand and section anchors.
 - `src/content/landing.ts`: typed marketing content consumed by sections.
 - `src/lib/registration.ts`: pure registration validation.
@@ -104,6 +106,7 @@ git commit -m "chore: scaffold Mars Vidya landing page"
 - Create: `src/components/landing/ProgramSection.tsx`
 - Create: `src/components/landing/SocialProof.tsx`
 - Create: `src/components/landing/Footer.tsx`
+- Create: `src/components/landing/FaqSection.tsx`
 - Modify: `src/app/page.tsx`
 - Modify: `src/app/globals.css`
 
@@ -117,7 +120,7 @@ Create `Benefit`, `CertificateTopic`, and `Testimonial` interfaces. Use concise 
 
 - [ ] **Step 2: Implement the original brand mark and four static sections**
 
-Use semantic headings, Lucide icons selected through explicit component mappings, and section anchors. Keep each component focused on rendering its corresponding typed content.
+Use semantic headings, Lucide icons selected through explicit component mappings, and section anchors. Add an accessible FAQ for price, duration, access, certificates, and registration expectations. Keep each component focused on rendering its corresponding typed content.
 
 - [ ] **Step 3: Compose the sections and apply the visual system**
 
@@ -143,6 +146,7 @@ git commit -m "feat: add Mars Vidya landing sections"
 - Create: `src/lib/registration.test.ts`
 - Create: `src/components/landing/RegistrationSection.tsx`
 - Create: `src/components/landing/RegistrationSection.test.tsx`
+- Create: `src/components/landing/StickyMobileCta.tsx`
 - Modify: `src/app/page.tsx`
 
 **Interfaces:**
@@ -175,7 +179,7 @@ Expected: FAIL because the interactive components are not implemented.
 
 - [ ] **Step 6: Implement navigation and registration components**
 
-Make both client components. The navigation links target the stable section IDs; the form uses the pure validator, connects errors through `aria-describedby`, and never makes a network request.
+Make the navigation and registration form client components. The navigation links target the stable section IDs; the form uses the pure validator, connects errors through `aria-describedby`, and never makes a network request. Add a small-screen sticky CTA that links to `#register` and leaves form state untouched.
 
 - [ ] **Step 7: Run the focused and full checks**
 

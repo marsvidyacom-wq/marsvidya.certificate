@@ -62,6 +62,10 @@ A trust strip provides the visual structure for a rating, learner avatars, and s
 
 The final section repeats the ₹199 offer and includes a compact client-side form. Submitting validates required fields and displays a demo success state. The footer contains brand and basic navigation links without invented legal claims.
 
+### Conversion Support
+
+The page repeats its primary CTA after major decision points, includes a compact FAQ that answers common purchase objections, and provides a sticky mobile CTA once the initial hero has scrolled away. These additions must not use fake countdowns, false scarcity, or unverified social proof.
+
 ## Visual Asset
 
 Create one original, photorealistic transparent-background hero asset showing four diverse Indian college-age students with notebooks or a laptop. Their expressions should be confident and friendly, clothing should be contemporary and modest, and the lighting should carry subtle blue and violet rim light so the group belongs naturally in the page.
@@ -76,6 +80,8 @@ The generated image must contain no logos, text, watermark, certificates, or bac
 - `ProgramSection`: renders certificate topics and the compact learning path.
 - `SocialProof`: rating and testimonial presentation.
 - `RegistrationSection`: client-side form state, validation, and acknowledgement.
+- `FaqSection`: concise answers about price, duration, access, certificates, and the demo registration flow.
+- `StickyMobileCta`: a small-screen-only shortcut to the registration section.
 - `Footer`: brand and anchor navigation.
 
 All marketing content stays in small typed arrays near the consuming components. No network requests are required. Anchor links provide deterministic navigation between sections.
