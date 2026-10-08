@@ -1,0 +1,35 @@
+{
+  "name": "mars-vidya-landing-page",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "lucide-react": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "latest",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "4.4.1",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "jsdom": "26.1.0",
+    "tailwindcss": "latest",
+    "typescript": "latest",
+    "vitest": "3.2.4"
+  }
+}
