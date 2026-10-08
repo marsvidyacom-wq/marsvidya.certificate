@@ -56,7 +56,7 @@ A short section explains the learning path and presents the five certificate top
 
 ### Social Proof
 
-A trust strip shows a 4.8/5 rating, learner avatars, and “50,000+ learners” messaging. Testimonials are clearly presented as marketing sample content unless real quotes are later supplied.
+A trust strip provides the visual structure for a rating, learner avatars, and student-count messaging. Any rating, count, or testimonial shown in the initial build is explicitly marked as demo content until verified figures and real quotes are supplied.
 
 ### Registration Panel and Footer
 
@@ -109,4 +109,5 @@ All marketing content stays in small typed arrays near the consuming components.
 - Payment gateway processing.
 - User accounts, a database, or a learning dashboard.
 - Claims or logos for Meta, Startup India, the Government of India, placement figures, or certifications that have not been independently provided and verified.
+- Publishing unverified learner counts, ratings, or testimonials as factual claims.
 - Copying third-party brand marks or reproducing the supplied poster pixel-for-pixel.
