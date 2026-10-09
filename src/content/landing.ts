@@ -96,7 +96,7 @@ export const faqs = [
   {
     question: "Is the registration fee ₹199?",
     answer:
-      "Yes. This page presents the complete student-special offer at ₹199. Payment processing is not connected in this demo build.",
+      "Yes. The complete student-special offer is ₹199, paid securely through Razorpay during registration.",
   },
   {
     question: "How long is the live program?",
@@ -116,6 +116,6 @@ export const faqs = [
   {
     question: "What happens after I register?",
     answer:
-      "In this demo, the form confirms your request locally and clearly notes that no payment has been processed.",
+      "After your ₹199 payment is verified, your registration is confirmed and our team will connect with you very soon.",
   },
 ];

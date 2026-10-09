@@ -25,16 +25,27 @@ describe("Hero", () => {
       "href",
       "#program",
     );
+    expect(screen.getByRole("link", { name: /register now for ₹199/i })).toHaveAttribute(
+      "href",
+      "#register",
+    );
   });
 
-  it("provides meaningful image text and non-claim trust cues", () => {
+  it("shows one consolidated partner logo grid and poster-style offer highlights", () => {
     render(<Hero />);
 
     expect(
+      screen.getByAltText(/marsvidya, vaiket and startup ecosystem partners/i),
+    ).toBeInTheDocument();
+    expect(screen.queryByAltText(/^meta business partner$/i)).not.toBeInTheDocument();
+    expect(screen.queryByAltText(/^startup india$/i)).not.toBeInTheDocument();
+    expect(screen.queryByAltText(/^dpiit recognised$/i)).not.toBeInTheDocument();
+    expect(
       screen.getByAltText(/four indian students ready to learn together/i),
     ).toBeInTheDocument();
-    expect(screen.getByText("Clear ₹199 pricing")).toBeInTheDocument();
-    expect(screen.getByText("7-day live format")).toBeInTheDocument();
-    expect(screen.getByText("Lifetime learning access")).toBeInTheDocument();
+    expect(screen.getByText("5 Certifications")).toBeInTheDocument();
+    expect(screen.getByText("7 Days Live Program")).toBeInTheDocument();
+    expect(screen.getByText("Placement Support")).toBeInTheDocument();
+    expect(screen.getByText("Lifetime Access")).toBeInTheDocument();
   });
 });

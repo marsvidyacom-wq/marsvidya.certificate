@@ -8,6 +8,12 @@ describe("Navbar", () => {
     const user = userEvent.setup();
     render(<Navbar />);
 
+    const logo = screen.getByRole("img", {
+      name: /marsvidya learn practice grow/i,
+    });
+    expect(logo.closest("a")).toHaveAttribute("aria-label", "MarsVidya home");
+    expect(screen.queryByLabelText(/vaiket home/i)).not.toBeInTheDocument();
+
     const trigger = screen.getByRole("button", { name: /open navigation/i });
     expect(trigger).toHaveAttribute("aria-expanded", "false");
 

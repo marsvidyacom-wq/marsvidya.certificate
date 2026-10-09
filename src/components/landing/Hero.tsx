@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpenCheck, CalendarDays, CircleCheckBig, GraduationCap, Infinity } from "lucide-react";
+import { ArrowRight, Award, BookOpenCheck, BriefcaseBusiness, CalendarDays, CircleCheckBig, GraduationCap, Infinity } from "lucide-react";
 import Image from "next/image";
 
 export function Hero() {
@@ -14,6 +14,17 @@ export function Hero() {
 
       <div className="section-shell hero-layout">
         <div className="hero-copy">
+          <div className="partner-logo-panel">
+            <Image
+              src="/images/Transparent Startup Logo Grid.png"
+              alt="MarsVidya, Vaiket and startup ecosystem partners"
+              width={1760}
+              height={880}
+              sizes="(max-width: 620px) calc(100vw - 2.5rem), (max-width: 900px) 78vw, 550px"
+              loading="eager"
+            />
+          </div>
+
           <span className="hero-badge">
             <GraduationCap aria-hidden="true" size={18} /> Student special opportunity
           </span>
@@ -35,10 +46,15 @@ export function Hero() {
           </div>
 
           <div className="hero-trust" aria-label="Offer highlights">
-            <span><CircleCheckBig aria-hidden="true" /> Clear ₹199 pricing</span>
-            <span><CalendarDays aria-hidden="true" /> 7-day live format</span>
-            <span><Infinity aria-hidden="true" /> Lifetime learning access</span>
+            <span><Award aria-hidden="true" /><strong>5 Certifications</strong></span>
+            <span><CalendarDays aria-hidden="true" /><strong>7 Days Live Program</strong></span>
+            <span><BriefcaseBusiness aria-hidden="true" /><strong>Placement Support</strong></span>
+            <span><Infinity aria-hidden="true" /><strong>Lifetime Access</strong></span>
           </div>
+
+          <a className="hero-inline-cta" href="#register">
+            Register now for ₹199 <ArrowRight aria-hidden="true" size={18} />
+          </a>
         </div>
 
         <div className="hero-visual">
@@ -55,8 +71,8 @@ export function Hero() {
             alt="Four Indian students ready to learn together"
             width={1536}
             height={1024}
-            sizes="(max-width: 900px) 100vw, 55vw"
-            priority
+            sizes="(max-width: 620px) 126vw, (max-width: 900px) 108vw, 55vw"
+            preload
           />
         </div>
       </div>

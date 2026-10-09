@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import Page from "./page";
 
@@ -40,5 +41,105 @@ describe("landing page shell", () => {
 
     const conversionLinks = screen.getAllByRole("link", { name: /join for ₹199/i });
     expect(conversionLinks.some((link) => link.getAttribute("href") === "#register")).toBe(true);
+  });
+
+  it("presents all five portfolio certificates directly below the hero", () => {
+    render(<Page />);
+
+    expect(
+      screen.getByRole("heading", {
+        name: /add 5 certificates to your portfolio in just 7 days/i,
+      }),
+    ).toBeInTheDocument();
+    expect(document.querySelectorAll(".certificate-card")).toHaveLength(5);
+  });
+
+  it("shows certificate seat availability and links the urgency CTA to registration", () => {
+    const { container } = render(<Page />);
+
+    expect(screen.getByText(/only 8 seats left/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("progressbar", { name: /192 of 200 seats booked/i }),
+    ).toHaveAttribute("aria-valuenow", "192");
+    expect(
+      screen.getByRole("link", { name: /^reserve your seat ₹199$/i }),
+    ).toHaveAttribute("href", "#register");
+
+    const certificateInner = container.querySelector(".certificate-showcase-inner");
+    const certificateChildren = Array.from(certificateInner?.children ?? []);
+    const metaIndex = certificateChildren.findIndex((element) =>
+      element.classList.contains("certificate-meta"),
+    );
+    const seatCtaIndex = certificateChildren.findIndex((element) =>
+      element.classList.contains("certificate-seat-cta"),
+    );
+
+    expect(seatCtaIndex).toBeGreaterThan(metaIndex);
+    expect(container.querySelector(".hero .certificate-seat-cta")).toBeNull();
+  });
+
+  it("moves through certificates with the carousel controls", async () => {
+    const user = userEvent.setup();
+    render(<Page />);
+
+    expect(screen.getByRole("status")).toHaveTextContent(/certificate 1 of 5.*cybersecurity/i);
+    await user.click(screen.getByRole("button", { name: /next certificate/i }));
+    expect(screen.getByRole("status")).toHaveTextContent(/certificate 2 of 5.*generative commerce/i);
+  });
+
+  it("supports swipe gestures for touch-friendly certificate browsing", () => {
+    render(<Page />);
+
+    const carousel = screen.getByLabelText(/certificate carousel/i);
+    fireEvent(carousel, new MouseEvent("pointerdown", { bubbles: true, clientX: 240 }));
+    fireEvent(carousel, new MouseEvent("pointerup", { bubbles: true, clientX: 120 }));
+    expect(screen.getByRole("status")).toHaveTextContent(/certificate 2 of 5/i);
+  });
+
+  it("does not let the click generated after a swipe undo the slide", () => {
+    render(<Page />);
+
+    const activeCard = screen.getByRole("button", {
+      name: /view full-size cybersecurity certificate/i,
+    });
+    fireEvent(activeCard, new MouseEvent("pointerdown", { bubbles: true, clientX: 240 }));
+    fireEvent(activeCard, new MouseEvent("pointerup", { bubbles: true, clientX: 120 }));
+    fireEvent.click(activeCard);
+
+    expect(screen.getByRole("status")).toHaveTextContent(/certificate 2 of 5/i);
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("opens the active certificate full size and closes it with Escape", async () => {
+    const user = userEvent.setup();
+    render(<Page />);
+
+    await user.click(
+      screen.getByRole("button", { name: /view full-size cybersecurity certificate/i }),
+    );
+    expect(
+      screen.getByRole("dialog", { name: /cybersecurity certificate preview/i }),
+    ).toBeInTheDocument();
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("keeps keyboard focus inside the full certificate view", async () => {
+    const user = userEvent.setup();
+    render(<Page />);
+
+    await user.click(
+      screen.getByRole("button", { name: /view full-size cybersecurity certificate/i }),
+    );
+    const closeButton = screen.getByRole("button", {
+      name: /close certificate preview/i,
+    });
+    expect(closeButton).toHaveFocus();
+
+    await user.tab();
+    expect(closeButton).toHaveFocus();
+    await user.tab({ shift: true });
+    expect(closeButton).toHaveFocus();
   });
 });

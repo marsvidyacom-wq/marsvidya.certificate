@@ -1,4 +1,5 @@
 import { BenefitGrid } from "@/components/landing/BenefitGrid";
+import { CertificateShowcase } from "@/components/landing/CertificateShowcase";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { Footer } from "@/components/landing/Footer";
 import { Hero } from "@/components/landing/Hero";
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Navbar />
       <main id="top">
         <Hero />
+        <CertificateShowcase />
         <BenefitGrid />
         <ProgramSection />
         <SocialProof />

@@ -1,8 +1,8 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { BrandMark } from "@/components/brand/BrandMark";
 
 const navigationItems = [
   { href: "#benefits", label: "Benefits" },
@@ -36,7 +36,22 @@ export function Navbar() {
   return (
     <header className="site-header">
       <div className="navbar section-shell">
-        <BrandMark />
+        <div className="navbar-brands" aria-label="MarsVidya brand">
+          <a
+            className="navbar-marsvidya-logo"
+            href="#top"
+            aria-label="MarsVidya home"
+          >
+            <Image
+              src="/brand/marsvidya-certificate-logo.png"
+              alt="MarsVidya Learn Practice Grow"
+              width={2146}
+              height={733}
+              sizes="(max-width: 720px) 134px, 168px"
+              priority
+            />
+          </a>
+        </div>
 
         <button
           ref={triggerRef}
