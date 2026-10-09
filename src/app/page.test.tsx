@@ -26,10 +26,14 @@ describe("landing page shell", () => {
     ).toBeInTheDocument();
   });
 
-  it("labels sample social proof and answers conversion questions", () => {
+  it("shows the press image and answers conversion questions", () => {
     render(<Page />);
 
-    expect(screen.getByText(/demo content/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: /hindi newspaper feature about vaiket and marsvidya/i,
+      }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /questions before you join/i }),
     ).toBeInTheDocument();
@@ -41,6 +45,24 @@ describe("landing page shell", () => {
 
     const conversionLinks = screen.getAllByRole("link", { name: /join for ₹199/i });
     expect(conversionLinks.some((link) => link.getAttribute("href") === "#register")).toBe(true);
+  });
+
+  it("links the footer to every customer policy", () => {
+    render(<Page />);
+
+    expect(screen.getByRole("link", { name: /terms & conditions/i })).toHaveAttribute(
+      "href",
+      "/terms-and-conditions",
+    );
+    expect(screen.getByRole("link", { name: /privacy policy/i })).toHaveAttribute(
+      "href",
+      "/privacy-policy",
+    );
+    expect(screen.getByRole("link", { name: /refund policy/i })).toHaveAttribute(
+      "href",
+      "/refund-policy",
+    );
+    expect(screen.getByText(/© 2026 marsvidya\. all rights reserved\./i)).toBeInTheDocument();
   });
 
   it("presents all five portfolio certificates directly below the hero", () => {
@@ -80,24 +102,25 @@ describe("landing page shell", () => {
 
   it("moves through certificates with the carousel controls", async () => {
     const user = userEvent.setup();
-    render(<Page />);
+    const { container } = render(<Page />);
+    const certificateStatus = container.querySelector(".certificate-status");
 
-    expect(screen.getByRole("status")).toHaveTextContent(/certificate 1 of 5.*cybersecurity/i);
+    expect(certificateStatus).toHaveTextContent(/certificate 1 of 5.*cybersecurity/i);
     await user.click(screen.getByRole("button", { name: /next certificate/i }));
-    expect(screen.getByRole("status")).toHaveTextContent(/certificate 2 of 5.*generative commerce/i);
+    expect(certificateStatus).toHaveTextContent(/certificate 2 of 5.*generative commerce/i);
   });
 
   it("supports swipe gestures for touch-friendly certificate browsing", () => {
-    render(<Page />);
+    const { container } = render(<Page />);
 
     const carousel = screen.getByLabelText(/certificate carousel/i);
     fireEvent(carousel, new MouseEvent("pointerdown", { bubbles: true, clientX: 240 }));
     fireEvent(carousel, new MouseEvent("pointerup", { bubbles: true, clientX: 120 }));
-    expect(screen.getByRole("status")).toHaveTextContent(/certificate 2 of 5/i);
+    expect(container.querySelector(".certificate-status")).toHaveTextContent(/certificate 2 of 5/i);
   });
 
   it("does not let the click generated after a swipe undo the slide", () => {
-    render(<Page />);
+    const { container } = render(<Page />);
 
     const activeCard = screen.getByRole("button", {
       name: /view full-size cybersecurity certificate/i,
@@ -106,7 +129,7 @@ describe("landing page shell", () => {
     fireEvent(activeCard, new MouseEvent("pointerup", { bubbles: true, clientX: 120 }));
     fireEvent.click(activeCard);
 
-    expect(screen.getByRole("status")).toHaveTextContent(/certificate 2 of 5/i);
+    expect(container.querySelector(".certificate-status")).toHaveTextContent(/certificate 2 of 5/i);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 

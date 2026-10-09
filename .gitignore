@@ -4,5 +4,6 @@
 /.superpowers/
 /supabase/.temp/
 *.log
+*.tsbuildinfo
 .env*
 !.env.example

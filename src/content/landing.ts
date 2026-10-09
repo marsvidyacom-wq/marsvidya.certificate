@@ -17,6 +17,7 @@ export interface Testimonial {
   quote: string;
   name: string;
   role: string;
+  location: string;
 }
 
 export const benefits: Benefit[] = [
@@ -76,19 +77,39 @@ export const certificateTopics: CertificateTopic[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    quote: "The live format made it easier to stay consistent and actually finish the work.",
-    name: "Sample learner",
-    role: "Student · Demo testimonial",
+    quote:
+      "The 7-day program was super practical. I learned real skills and got certified. Now I feel more confident about my career.",
+    name: "Rohit Kumar",
+    role: "B.Tech Student",
+    location: "Ranchi",
   },
   {
-    quote: "Every topic felt practical, focused, and connected to a real career outcome.",
-    name: "Sample learner",
-    role: "Graduate · Demo testimonial",
+    quote:
+      "Excellent training and mentorship! The trainers explained everything with real examples. This helped me switch to a better role.",
+    name: "Priya Sharma",
+    role: "Digital Marketing Executive",
+    location: "Bengaluru",
   },
   {
-    quote: "A clear starting point for anyone who wants to build skills without feeling lost.",
-    name: "Sample learner",
-    role: "Early-career learner · Demo testimonial",
+    quote:
+      "The projects and live sessions were amazing. I built real applications and got certified. This program is worth it!",
+    name: "Aditya Verma",
+    role: "BCA Student",
+    location: "Delhi",
+  },
+  {
+    quote:
+      "The cyber security module was my favorite. I got hands-on knowledge and certification. Now I'm exploring better opportunities.",
+    name: "Sneha Gupta",
+    role: "IT Support Engineer",
+    location: "Noida",
+  },
+  {
+    quote:
+      "Great faculty, industry-relevant curriculum and supportive community. I'm now working on my startup idea with their guidance.",
+    name: "Arjun Mehta",
+    role: "MBA Student",
+    location: "Mumbai",
   },
 ];
 
