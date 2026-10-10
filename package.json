@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.20.0",
     "lucide-react": "latest",
     "next": "latest",
     "postgres": "3.4.9",

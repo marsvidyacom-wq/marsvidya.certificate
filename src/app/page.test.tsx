@@ -1,7 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import Page from "./page";
+
+vi.mock("@lottiefiles/dotlottie-react", () => ({
+  DotLottieReact: ({ className }: { className?: string }) => <div className={className} />,
+}));
 
 describe("landing page shell", () => {
   it("presents the core student offer as the primary heading", () => {
@@ -45,6 +49,33 @@ describe("landing page shell", () => {
 
     const conversionLinks = screen.getAllByRole("link", { name: /join for ₹199/i });
     expect(conversionLinks.some((link) => link.getAttribute("href") === "#register")).toBe(true);
+  });
+
+  it("opens WhatsApp support with the certification enquiry ready to send", () => {
+    render(<Page />);
+
+    const whatsappLink = screen.getByRole("link", { name: /chat with marsvidya on whatsapp/i });
+    const whatsappUrl = new URL(whatsappLink.getAttribute("href") ?? "");
+
+    expect(`${whatsappUrl.hostname}${whatsappUrl.pathname}`).toBe("wa.me/917992458570");
+    expect(whatsappUrl.searchParams.get("text")).toMatch(/7-day certification program/i);
+    expect(whatsappUrl.searchParams.get("text")).toMatch(/5 skill segments/i);
+  });
+
+  it("hides WhatsApp support while scrolling and restores it after scrolling stops", () => {
+    vi.useFakeTimers();
+    render(<Page />);
+    const whatsappLink = screen.getByRole("link", { name: /chat with marsvidya on whatsapp/i });
+
+    fireEvent.scroll(window);
+    expect(whatsappLink).toHaveAttribute("data-scrolling", "true");
+
+    act(() => vi.advanceTimersByTime(499));
+    expect(whatsappLink).toHaveAttribute("data-scrolling", "true");
+
+    act(() => vi.advanceTimersByTime(1));
+    expect(whatsappLink).toHaveAttribute("data-scrolling", "false");
+    vi.useRealTimers();
   });
 
   it("links the footer to every customer policy", () => {

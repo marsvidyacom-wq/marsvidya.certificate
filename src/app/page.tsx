@@ -7,6 +7,7 @@ import { ProgramSection } from "@/components/landing/ProgramSection";
 import { RegistrationSection } from "@/components/landing/RegistrationSection";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { StickyMobileCta } from "@/components/landing/StickyMobileCta";
+import { WhatsAppSupport } from "@/components/landing/WhatsAppSupport";
 import { Navbar } from "@/components/navigation/Navbar";
 
 export default function HomePage() {
@@ -24,6 +25,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <StickyMobileCta />
+      <WhatsAppSupport />
     </>
   );
 }

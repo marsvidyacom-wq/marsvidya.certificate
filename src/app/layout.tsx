@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         {children}
       </body>
+      {process.env.NODE_ENV === "production" ? <GoogleAnalytics /> : null}
     </html>
   );
 }
