@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const whatsappMessage =
   "Hi, I’m interested in the 7-Day Certification Program covering 5 skill segments. Could you please help me with the details and enrollment process?";
 
-const whatsappUrl = `https://wa.me/917992458570?text=${encodeURIComponent(whatsappMessage)}`;
+const whatsappUrl = `https://wa.me/916388381855?text=${encodeURIComponent(whatsappMessage)}`;
 
 export function WhatsAppSupport() {
   const [isScrolling, setIsScrolling] = useState(false);

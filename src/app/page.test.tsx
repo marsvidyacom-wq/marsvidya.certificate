@@ -57,7 +57,7 @@ describe("landing page shell", () => {
     const whatsappLink = screen.getByRole("link", { name: /chat with marsvidya on whatsapp/i });
     const whatsappUrl = new URL(whatsappLink.getAttribute("href") ?? "");
 
-    expect(`${whatsappUrl.hostname}${whatsappUrl.pathname}`).toBe("wa.me/917992458570");
+    expect(`${whatsappUrl.hostname}${whatsappUrl.pathname}`).toBe("wa.me/916388381855");
     expect(whatsappUrl.searchParams.get("text")).toMatch(/7-day certification program/i);
     expect(whatsappUrl.searchParams.get("text")).toMatch(/5 skill segments/i);
   });
